@@ -174,6 +174,11 @@ public class KelolaAkun extends javax.swing.JFrame {
         btnedit.setText("Edit");
 
         btnrefresh.setText("Refresh");
+        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrefreshActionPerformed(evt);
+            }
+        });
 
         btnhapus.setText("Hapus");
 
@@ -257,6 +262,10 @@ public class KelolaAkun extends javax.swing.JFrame {
     private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
        this.dispose();
     }//GEN-LAST:event_btnkeluarActionPerformed
+
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
+        txtuser.setText("");
+    }//GEN-LAST:event_btnrefreshActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
