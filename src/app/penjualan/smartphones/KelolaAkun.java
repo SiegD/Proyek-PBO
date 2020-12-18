@@ -11,12 +11,15 @@ public class KelolaAkun extends javax.swing.JFrame {
     public ResultSet rs;
     public DefaultTableModel tm;
     boolean edit;
-    String S_id;
+    String S_user;
     Connection cn = KonekDB.koneksi();
     
     public KelolaAkun() {
         initComponents();
         setVisible(true);
+        Judul();
+        Tampil("");
+        Refresh();
     }
 
     /**
@@ -69,6 +72,11 @@ public class KelolaAkun extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -102,8 +110,18 @@ public class KelolaAkun extends javax.swing.JFrame {
         jLabel5.setText("STATUS");
 
         btnbatal.setText("Batal");
+        btnbatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbatalActionPerformed(evt);
+            }
+        });
 
         btnsimpan.setText("Simpan");
+        btnsimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsimpanActionPerformed(evt);
+            }
+        });
 
         txtuser.setText("jTextField1");
 
@@ -135,7 +153,7 @@ public class KelolaAkun extends javax.swing.JFrame {
                     .addComponent(txtstatus))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,8 +188,18 @@ public class KelolaAkun extends javax.swing.JFrame {
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btntambah.setText("Tambah");
+        btntambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntambahActionPerformed(evt);
+            }
+        });
 
         btnedit.setText("Edit");
+        btnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditActionPerformed(evt);
+            }
+        });
 
         btnrefresh.setText("Refresh");
         btnrefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +209,11 @@ public class KelolaAkun extends javax.swing.JFrame {
         });
 
         btnhapus.setText("Hapus");
+        btnhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhapusActionPerformed(evt);
+            }
+        });
 
         btnkeluar.setText("Keluar");
         btnkeluar.addActionListener(new java.awt.event.ActionListener() {
@@ -224,21 +257,19 @@ public class KelolaAkun extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(269, 269, 269))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +287,8 @@ public class KelolaAkun extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(843, 529));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
@@ -264,9 +296,166 @@ public class KelolaAkun extends javax.swing.JFrame {
     }//GEN-LAST:event_btnkeluarActionPerformed
 
     private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
-        txtuser.setText("");
+        Refresh();
     }//GEN-LAST:event_btnrefreshActionPerformed
 
+    private void btntambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntambahActionPerformed
+        clear();
+        txtuser.requestFocus();
+    }//GEN-LAST:event_btntambahActionPerformed
+
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+       edit= true;
+       clear();
+       btnsimpan.setText("Update");
+    }//GEN-LAST:event_btneditActionPerformed
+
+    private void btnhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusActionPerformed
+        try{
+            int a;
+            
+            if((a=JOptionPane.showConfirmDialog(null,"Hapus Data?","Confirmation",JOptionPane.YES_NO_OPTION))==0){
+                s = cn.createStatement();
+                s.executeUpdate("Delete From tb_users Where username='"+tm.getValueAt(jTable1.getSelectedRow(),0)+"'");
+                Tampil("");
+                Refresh();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnhapusActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        S_user=(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+        txtuser.setText(S_user);
+        txtpass.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
+        txtpass2.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
+        txtstatus.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2).toString());
+        
+        btntambah.setEnabled(false);
+        btnsimpan.setEnabled(false);
+        btnedit.setEnabled(true);
+        btnhapus.setEnabled(true);
+        btnbatal.setEnabled(false);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
+        try{
+            s = cn.createStatement();
+            if (txtuser.getText().equals("")||txtpass.getText().equals("")||txtpass2.getText().equals("")||txtstatus.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Masih ada Data Kosong!");
+            }else{
+            if (txtpass.getText().equals(txtpass2.getText())){
+            if(edit){
+                s.executeUpdate("UPDATE tb_users set "+"username='"+txtuser.getText()+"',"+
+                        "password='"+txtpass.getText()+"',"+"level='"+txtstatus.getText()+"'WHERE username='"+S_user+"'");
+                JOptionPane.showMessageDialog(null,"Berhasil Ter-Update");
+                 Tampil("");
+                 Refresh();
+            }else{
+                if(cariData("Where username like '%"+txtuser.getText()+"%'")){                    
+                    JOptionPane.showMessageDialog(null,"Data Sudah ada!");
+                    Tampil("");
+                }else{
+                s.executeUpdate("INSERT INTO tb_users(username,password,level) VALUES('"+txtuser.getText()+"','"+txtpass.getText()+"','"
+                                +txtstatus.getText()+"')");
+                JOptionPane.showMessageDialog(null,"Berhasil Disimpan");
+                Tampil("");
+                Refresh();
+                        }
+                    
+            }
+            }else{
+                JOptionPane.showMessageDialog(null,"Password Tidak sama!");
+            }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnsimpanActionPerformed
+
+    private void btnbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbatalActionPerformed
+        Refresh();
+    }//GEN-LAST:event_btnbatalActionPerformed
+
+    public void Judul(){
+        Object[]judul={"Username","Password","Status"};
+        tm = new DefaultTableModel(null,judul);
+        jTable1.setModel(tm);
+    }
+    
+    public void Tampil(String where){
+        try{
+            s=cn.createStatement();
+            tm.getDataVector().removeAllElements();
+            tm.fireTableDataChanged();
+            rs = s.executeQuery("SELECT * FROM tb_users"+where);
+            
+            while(rs.next()){
+                Object[]data={
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("level"),
+                };
+                tm.addRow(data);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void Refresh(){
+        txtuser.setText("");
+        txtpass.setText("");
+        txtpass2.setText("");
+        txtstatus.setText("");
+        
+        txtuser.setEnabled(false);
+        txtpass.setEnabled(false);
+        txtpass2.setEnabled(false);
+        txtstatus.setEnabled(false);
+
+        btntambah.setEnabled(true);
+        btnsimpan.setEnabled(false);
+        btnedit.setEnabled(false);
+        btnhapus.setEnabled(false);
+        btnbatal.setEnabled(false);
+        btnsimpan.setText("Simpan");
+        edit = false;
+    }
+    
+    public void clear(){
+    txtuser.setEnabled(true);
+    txtpass.setEnabled(true);
+    txtpass2.setEnabled(true);
+    txtstatus.setEnabled(true);
+    
+    btntambah.setEnabled(false);
+    btnedit.setEnabled(false);
+    btnhapus.setEnabled(false);
+    btnsimpan.setEnabled(true);
+    btnbatal.setEnabled(true);
+}
+    
+    public Boolean cariData(String where){
+        try {
+        s = cn.createStatement();
+        tm.getDataVector().removeAllElements();
+        tm.fireTableDataChanged();
+        rs = s.executeQuery("SELECT * FROM tb_users " + where);
+
+        while (rs.next()) {
+          Object[] data = {
+              rs.getString("username"),
+          };
+          tm.addRow(data);
+          return (true);
+        }
+        return (false);
+      }catch(Exception e) {
+        e.printStackTrace();
+      }return(false);
+    }
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbatal;
