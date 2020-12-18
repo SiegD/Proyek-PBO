@@ -47,6 +47,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jButton2.setText("LAPORAN");
 
         jButton3.setText("KELOLA AKUN");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("TRANSAKSI");
 
@@ -113,6 +118,10 @@ public class MenuUtama extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       new KelolaAkun();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
    
 

@@ -178,6 +178,11 @@ public class KelolaAkun extends javax.swing.JFrame {
         btnhapus.setText("Hapus");
 
         btnkeluar.setText("Keluar");
+        btnkeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeluarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -248,6 +253,10 @@ public class KelolaAkun extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnkeluarActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
