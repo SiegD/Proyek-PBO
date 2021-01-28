@@ -5,6 +5,7 @@
  */
 package app.penjualan.smartphones;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -44,7 +45,7 @@ public Statement s;
         txtuser = new javax.swing.JTextField();
         btnlogin = new javax.swing.JButton();
         btnbatal = new javax.swing.JButton();
-        txtpass = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,11 @@ public Statement s;
         jLabel3.setText("Password");
 
         txtuser.setText("jTextField1");
+        txtuser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtuserKeyPressed(evt);
+            }
+        });
 
         btnlogin.setText("Login");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +77,12 @@ public Statement s;
             }
         });
 
-        txtpass.setText("jTextField1");
+        txtpass.setText("jPasswordField1");
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,11 +126,11 @@ public Statement s;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(748, 339));
@@ -141,6 +152,18 @@ public Statement s;
             JOptionPane.showMessageDialog(null,"Username atau password salah!");
         }
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void txtuserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            txtpass.requestFocus();
+        }
+    }//GEN-LAST:event_txtuserKeyPressed
+
+    private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            btnlogin.doClick();
+        }
+    }//GEN-LAST:event_txtpassKeyPressed
 
     public Boolean cariData(String where){
         try {
@@ -167,7 +190,7 @@ public Statement s;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtpass;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
