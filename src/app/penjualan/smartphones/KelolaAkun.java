@@ -348,7 +348,7 @@ public class KelolaAkun extends javax.swing.JFrame {
             if (txtpass.getText().equals(txtpass2.getText())){
             if(edit){
                 s.executeUpdate("UPDATE tb_users set "+"username='"+txtuser.getText()+"',"+
-                        "password='"+txtpass.getText()+"',"+"level='"+txtstatus.getText()+"'WHERE username='"+S_user+"'");
+                        "password='"+txtpass.getText()+"',"+"status='"+txtstatus.getText()+"'WHERE username='"+S_user+"'");
                 JOptionPane.showMessageDialog(null,"Berhasil Ter-Update");
                  Tampil("");
                  Refresh();
@@ -357,7 +357,7 @@ public class KelolaAkun extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Data Sudah ada!");
                     Tampil("");
                 }else{
-                s.executeUpdate("INSERT INTO tb_users(username,password,level) VALUES('"+txtuser.getText()+"','"+txtpass.getText()+"','"
+                s.executeUpdate("INSERT INTO tb_users(username,password,status) VALUES('"+txtuser.getText()+"','"+txtpass.getText()+"','"
                                 +txtstatus.getText()+"')");
                 JOptionPane.showMessageDialog(null,"Berhasil Disimpan");
                 Tampil("");
@@ -379,7 +379,7 @@ public class KelolaAkun extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbatalActionPerformed
 
     public void Judul(){
-        Object[]judul={"Username","Password","Status"};
+        Object[]judul={"Username","Status"};
         tm = new DefaultTableModel(null,judul);
         jTable1.setModel(tm);
     }
@@ -394,8 +394,7 @@ public class KelolaAkun extends javax.swing.JFrame {
             while(rs.next()){
                 Object[]data={
                     rs.getString("username"),
-                    rs.getString("password"),
-                    rs.getString("level"),
+                    rs.getString("status"),
                 };
                 tm.addRow(data);
             }
