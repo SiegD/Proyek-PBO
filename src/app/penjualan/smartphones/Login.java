@@ -18,7 +18,7 @@ public Statement s;
     public ResultSet rs;
     public DefaultTableModel tm;
     boolean edit;
-    String S_user;
+    String S_user,stat;
     Connection cn = KonekDB.koneksi();
     
     public Login() {
@@ -70,7 +70,7 @@ public Statement s;
             }
         });
 
-        btnbatal.setText("Batal");
+        btnbatal.setText("Keluar");
         btnbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbatalActionPerformed(evt);
@@ -88,10 +88,6 @@ public Statement s;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(312, 312, 312))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,21 +98,24 @@ public Statement s;
                             .addComponent(jLabel3))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtuser, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                            .addComponent(txtpass)))
+                            .addComponent(txtuser)
+                            .addComponent(txtpass, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
+                        .addGap(90, 90, 90)
                         .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,14 +125,14 @@ public Statement s;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
-        setSize(new java.awt.Dimension(748, 339));
+        setSize(new java.awt.Dimension(461, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,9 +143,10 @@ public Statement s;
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         if(txtuser.getText().equals("") || txtpass.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Username atau password kosong!");
-        }else if(cariData("WHERE username Like '%"+txtuser.getText()+"%' AND password Like '%"+txtpass.getText()+"%'")){
+        }else if(cariData("WHERE username Like '%"+txtuser.getText()+"%' AND password Like '"+txtpass.getText()+"'")){
             JOptionPane.showMessageDialog(null,"Berhasil Login \n"+"Selamat datang "+txtuser.getText());
-            new MenuUtama();
+            stat=cekstatus("WHERE username Like '%"+txtuser.getText()+"%' AND password Like '"+txtpass.getText()+"'");
+            new MenuUtama(stat);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null,"Username atau password salah!");
@@ -181,6 +181,24 @@ public Statement s;
       }catch(Exception e) {
         e.printStackTrace();
       }return(false);
+    }
+    
+    public String cekstatus(String where){
+        String u;
+        try {
+        s = cn.createStatement();
+        rs = s.executeQuery("SELECT * FROM tb_users " + where);
+
+        while (rs.next()) {
+          Object[] data = {
+              u=rs.getString("status"),
+          };
+          return (u);
+        }
+        return ("Pegawai");
+      }catch(Exception e) {
+        e.printStackTrace();
+      }return("Pegawai");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

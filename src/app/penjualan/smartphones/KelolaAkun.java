@@ -45,9 +45,10 @@ public class KelolaAkun extends javax.swing.JFrame {
         btnbatal = new javax.swing.JButton();
         btnsimpan = new javax.swing.JButton();
         txtuser = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
-        txtpass2 = new javax.swing.JTextField();
-        txtstatus = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtpass = new javax.swing.JPasswordField();
+        txtpass2 = new javax.swing.JPasswordField();
+        cmbstatus = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         btntambah = new javax.swing.JButton();
         btnedit = new javax.swing.JButton();
@@ -125,44 +126,51 @@ public class KelolaAkun extends javax.swing.JFrame {
 
         txtuser.setText("jTextField1");
 
-        txtpass.setText("jTextField2");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Data Akun :");
 
-        txtpass2.setText("jTextField3");
+        txtpass.setText("jPasswordField1");
 
-        txtstatus.setText("jTextField4");
+        txtpass2.setText("jPasswordField2");
+
+        cmbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtuser, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(txtpass)))
-                    .addComponent(txtpass2)
-                    .addComponent(txtstatus))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtuser)
+                            .addComponent(txtpass)
+                            .addComponent(txtpass2)
+                            .addComponent(cmbstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,12 +185,12 @@ public class KelolaAkun extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(cmbstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                    .addComponent(btnsimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbatal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -301,12 +309,15 @@ public class KelolaAkun extends javax.swing.JFrame {
 
     private void btntambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntambahActionPerformed
         clear();
+        isicmb();
         txtuser.requestFocus();
     }//GEN-LAST:event_btntambahActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
        edit= true;
        clear();
+        isicmb();
+        cmbstatus.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
        btnsimpan.setText("Update");
     }//GEN-LAST:event_btneditActionPerformed
 
@@ -328,9 +339,9 @@ public class KelolaAkun extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         S_user=(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
         txtuser.setText(S_user);
-        txtpass.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
-        txtpass2.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
-        txtstatus.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2).toString());
+        txtpass.setText("");
+        txtpass2.setText("");
+        txtpass.requestFocus();
         
         btntambah.setEnabled(false);
         btnsimpan.setEnabled(false);
@@ -342,13 +353,15 @@ public class KelolaAkun extends javax.swing.JFrame {
     private void btnsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsimpanActionPerformed
         try{
             s = cn.createStatement();
-            if (txtuser.getText().equals("")||txtpass.getText().equals("")||txtpass2.getText().equals("")||txtstatus.getText().equals("")){
+            String status = cmbstatus.getSelectedItem().toString();
+            
+            if (txtuser.getText().equals("")||txtpass.getText().equals("")||txtpass2.getText().equals("")||status.equals("")){
                 JOptionPane.showMessageDialog(null,"Masih ada Data Kosong!");
             }else{
             if (txtpass.getText().equals(txtpass2.getText())){
             if(edit){
                 s.executeUpdate("UPDATE tb_users set "+"username='"+txtuser.getText()+"',"+
-                        "password='"+txtpass.getText()+"',"+"status='"+txtstatus.getText()+"'WHERE username='"+S_user+"'");
+                        "password='"+txtpass.getText()+"',"+"status='"+status+"'WHERE username='"+S_user+"'");
                 JOptionPane.showMessageDialog(null,"Berhasil Ter-Update");
                  Tampil("");
                  Refresh();
@@ -358,12 +371,11 @@ public class KelolaAkun extends javax.swing.JFrame {
                     Tampil("");
                 }else{
                 s.executeUpdate("INSERT INTO tb_users(username,password,status) VALUES('"+txtuser.getText()+"','"+txtpass.getText()+"','"
-                                +txtstatus.getText()+"')");
+                                +status+"')");
                 JOptionPane.showMessageDialog(null,"Berhasil Disimpan");
                 Tampil("");
                 Refresh();
                         }
-                    
             }
             }else{
                 JOptionPane.showMessageDialog(null,"Password Tidak sama!");
@@ -407,12 +419,12 @@ public class KelolaAkun extends javax.swing.JFrame {
         txtuser.setText("");
         txtpass.setText("");
         txtpass2.setText("");
-        txtstatus.setText("");
+        cmbstatus.removeAllItems();
         
         txtuser.setEnabled(false);
         txtpass.setEnabled(false);
         txtpass2.setEnabled(false);
-        txtstatus.setEnabled(false);
+        cmbstatus.setEnabled(false);
 
         btntambah.setEnabled(true);
         btnsimpan.setEnabled(false);
@@ -427,7 +439,7 @@ public class KelolaAkun extends javax.swing.JFrame {
     txtuser.setEnabled(true);
     txtpass.setEnabled(true);
     txtpass2.setEnabled(true);
-    txtstatus.setEnabled(true);
+    cmbstatus.setEnabled(true);
     
     btntambah.setEnabled(false);
     btnedit.setEnabled(false);
@@ -456,6 +468,11 @@ public class KelolaAkun extends javax.swing.JFrame {
       }return(false);
     }
   
+    public void isicmb(){
+        cmbstatus.addItem("ADMIN");
+        cmbstatus.addItem("OWNER");
+        cmbstatus.addItem("PEGAWAI");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbatal;
     private javax.swing.JButton btnedit;
@@ -464,21 +481,22 @@ public class KelolaAkun extends javax.swing.JFrame {
     private javax.swing.JButton btnrefresh;
     private javax.swing.JButton btnsimpan;
     private javax.swing.JButton btntambah;
+    private javax.swing.JComboBox<String> cmbstatus;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtpass;
-    private javax.swing.JTextField txtpass2;
-    private javax.swing.JTextField txtstatus;
+    private javax.swing.JPasswordField txtpass;
+    private javax.swing.JPasswordField txtpass2;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
